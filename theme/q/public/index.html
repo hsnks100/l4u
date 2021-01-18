@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css?ver=191202">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script>
+      window.title = "그누보드5(Vue)";
+      window.url = "../../api/";
+      window.req_api = (data) => {
+        let formData = new FormData();
+        let url = window.url;
+        for(key in data) {
+          if(key == 'url') url += data[key];
+          else formData.append(key, data[key]);
+        }
+        return fetch(url, {
+          method: "post",
+          body: formData,
+        })
+        .then(function(response) {
+          return response.json();
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
