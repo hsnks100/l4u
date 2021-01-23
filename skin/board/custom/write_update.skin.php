@@ -5,20 +5,18 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 function getR($table, $id) {
     $sql = "SELECT * FROM $table WHERE mb_id = '$id'";
     $row = sql_fetch($sql);
-    return $row['mb_1'];
+    if ( $row['mb_1'] == "") {
+        return 1500;
+    } else {
+        return $row['mb_1'];
+    }
 }
 
 
 function getIdByName($table, $name) {
-
-    $sql = "SELECT * FROM $table WHERE mb_name = '$name'";
+    $sql = "SELECT * FROM $table WHERE mb_nick = '$name'";
     $row = sql_fetch($sql);
     return $row['mb_id'];
-    $names = array();
-    $names[0] = $players[0]['Name'];
-    $names[1] = $players[1]['Name'];
-    return $names;
-
 }
 function getWinnerIndex($root) {
     $winner = $root['Computed']['WinnerTeam'];
@@ -51,7 +49,7 @@ if(!$wr_comment) {  // 코멘일때는 저장하면 안됩.
     $Ra = getR($g5['member_table'], $player1Id);
     $Rb = getR($g5['member_table'], $player2Id);
 
-    $K = 20;
+    $K = 32;
     $Ea = 1.0/(1.0 + pow(10.0, ($Rb - $Ra)/600.0));
     $Eb = 1.0/(1.0 + pow(10.0, ($Ra - $Rb)/600.0));
     $Ra2 = $Ra + $K * (1 - $Ea);

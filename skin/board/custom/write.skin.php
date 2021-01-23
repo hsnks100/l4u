@@ -142,7 +142,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
         <label for="wr_subject" class="sound_only">제목<strong>필수</strong></label>
         
         <div id="autosave_wrapper" class="write_div">
-            <input type="text" name="wr_subject" value="<?php $subject = "win_lose";echo $subject ?>" id="wr_subject" required class="frm_input full_input required" size="50" maxlength="255" placeholder="제목">
+            <input type="text" name="wr_subject" value="<?php echo $subject ?>" id="wr_subject" required class="frm_input full_input required" size="50" maxlength="255" placeholder="제목">
         </div> 
     </div>
 
